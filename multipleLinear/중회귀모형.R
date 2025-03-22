@@ -1,3 +1,4 @@
+#중회귀모형
 market2 = read.csv("c:/data/reg/market-2.csv")
 head(market2,3)
 X = market2[,c(2:3)]
