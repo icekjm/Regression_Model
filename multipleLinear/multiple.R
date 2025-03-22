@@ -1,3 +1,5 @@
+#변수객체 삭제
+rm(list = ls())
 #중회귀모형
 market2 = read.csv("c:/data/reg/market-2.csv")
 head(market2,3)
