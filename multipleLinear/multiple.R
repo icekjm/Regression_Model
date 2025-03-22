@@ -1,6 +1,7 @@
 #중회귀모형
 market2 = read.csv("c:/data/reg/market-2.csv")
 head(market2,3)
+#2번째 열과 3번째 열을 추출
 X = market2[,c(2:3)]
 X = cbind(1, X)
 Y = market2[,4]
@@ -8,13 +9,15 @@ X = as.matrix(X)
 Y = as.matrix(Y)
 XTX = t(X) %*% X
 XTX
-XTY
+
 XTXI = solve(XTX)
 XTY = t(X) %*% Y
 beta = XTXI %*% XTY
+# beta행렬을 소수점 셋째 자리까지 반올림
 beta = round(beta,3)
 beta
 
+#분산분석표
 market2_lm = lm(Y ~ X1+X2, data=market2)
 summary(market2_lm)
 anova(market2_lm)
