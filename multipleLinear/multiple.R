@@ -42,9 +42,11 @@ pc99
 
 summary(market2_lm)
 
+#추가제곱합
 health = read.csv("c:/data/reg/health.csv")
 head(health,3)
 
+#모형적합
 h1_lm = lm(Y ~ X1, data=health)
 h2_lm = lm(Y ~ X1+X4, data=health)
 h3_lm = lm(Y ~ X1+X3+X4, data=health)
@@ -62,6 +64,7 @@ avPlots(h4_lm)
 
 summary(h4_lm)
 
+#실제 분석 사례
 chemical = read.csv("c:/data/reg/chemical.csv")
 head(chemical)
 
