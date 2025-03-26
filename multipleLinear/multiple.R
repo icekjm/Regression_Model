@@ -68,7 +68,9 @@ summary(h4_lm)
 chemical = read.csv("c:/data/reg/chemical.csv")
 head(chemical)
 
-summary(chemical[,-1])
+summary(chemical[,-1]) #1번째 열 제외하고 데이터를 가져옴
+#첫 번째 열을 제외한 나머지 변수들 간의 상관계수 
+#+1 : 완벽한 양의 상관관계, 0:상관관계 없음, -1: 완력한 음의상관관계
 cor(chemical[,-1])
 chemical_lm = lm(loss ~ speed + temp,  data=chemical)
 summary(chemical_lm)
