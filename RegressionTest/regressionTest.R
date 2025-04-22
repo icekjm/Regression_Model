@@ -45,7 +45,25 @@ full_lm = lm(Y ~ X1+X2+X3+X4, data=prater)
 step(start_lm, scope=list(upper=full_lm), data=prater, direction="both")
 
 
+#토양침식자료
+soil = read.csv("c:/data/reg/soil.csv")
+head(soil)
 
+soil_lm=lm(SL ~ SG+LOBS+PGC, data=soil)
+summary(soil_lm)
 
+anova(soil_lm)
+names(soil_lm)
 
+plot(soil_lm$fitted, soil_lm$resid, pch=19, cex=1.5)
+identify(soil_lm$fitted, soil_lm$resid)
+
+soil_diag = ls.diag(soil_lm)
+names(soil_diag)
+diag_st = cbind(soil_diag$hat, soil_diag$std.res, soil_diag$stud.res, soil_diag$cooks)
+colnames(diag_st) = c("Hii", "ri", "ti", "Di")
+
+round(diag_st, 3)
+Di=cooks.distance(soil_lm)
+round(Di, 3)
 
