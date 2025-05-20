@@ -55,6 +55,33 @@ summary(logit_main.r)
 #모형(8.10) vs 모형(8.8)의 모형선택에 대한 가능도비 검정
 anova(logit_main.r, logit_main, test="LRT")
 
+#고교학습 프로그램 참여자료 분석하기
+install.packages("UPG")
+library(UPG)
+head(program, 5)
+summary(program)
+prg.d = program
+#숫자처럼보이지만 범주형이라고 선언
+prg.d$ses = as.factor(prg.d$ses)
+levels(prg.d$ses) = c("low", "middle", "high")
+#반응변수 기준범주 설정: general
+prg.d$program[prg.d[1]=="general"] = c("1.general")
+
+###다항로짓모형 적합
+## nnet library의 multinom()으로 적합
+install.packages("nnet")
+library(nnet)
+ml.prog1 = multinom(program ~ ses + write, data = prg.d)
+summary(ml.prog1)
+
+# 승산비 추정값과 95% 신뢰구간 추정
+exp(coef(ml.prog1))
+#신뢰구간
+exp(confint(ml.prog1, parm="write", level=0.95))
+
+
+
+
 
 
 
